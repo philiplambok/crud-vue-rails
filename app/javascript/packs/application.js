@@ -16,6 +16,7 @@
 
 import Vue from "vue/dist/vue.esm";
 import App from "../app.vue";
+import NewArticleForm from "../new_article_form.vue";
 
 document.addEventListener("DOMContentLoaded", () => {
   const app = new Vue({
@@ -23,6 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
     data: {
       message: "Can you say hello?"
     },
-    components: { App }
+    components: { App, NewArticleForm }
   });
 });
