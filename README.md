@@ -1,12 +1,16 @@
 ### Simple CRUD Vue-Rails app
 
-### Dependencies
+See how i build this in the [commit history](https://github.com/philiplambok/crud-vue-rails/commits/master)
 
-- Webpacker (Vue.js)
+#### Dependencies
+
+- Rspec (include capybara and selenium_driver)
+- Webpacker (include Vue.js)
 - Bootstrap
+- Font awesome (icon stuff)
 - Foreman
 
-#### Usage
+#### How to install
 
 1. `bundle install`
 2. `yarn install`
