@@ -35,7 +35,8 @@
 
     <div class="form-group row">
       <div class="col-md-10 ml-auto">
-        <button class="btn btn-primary px-4" @click="submitArticle()">Submit Article</button>
+        <button class="btn btn-primary px-4" @click="submitArticle()" v-if="!this.id">Submit Article</button>
+        <button class="btn btn-primary px-4" @click="updateArticle()" v-if="this.id">Update Article</button>
       </div>
     </div>
   </div>
@@ -43,6 +44,7 @@
 
 <script>
 export default {
+  props: ["id"],
   data() {
     return {
       title: "",
@@ -70,6 +72,27 @@ export default {
         errors.push("Body was blank");
       }
       return errors;
+    },
+
+    updateArticle() {
+      let url = `/api/articles/${this.id}`;
+      let data = {
+        article: {
+          title: this.title,
+          body: this.body
+        }
+      };
+      fetch(url, {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: JSON.stringify(data)
+      })
+        .then(response => response.json())
+        .then(data => {
+          this.successMessage = data.message;
+        });
     },
 
     submitArticle() {
@@ -101,6 +124,16 @@ export default {
           this.title = "";
           this.body = "";
           this.successMessage = data.message;
+        });
+    }
+  },
+  mounted() {
+    if (this.id) {
+      fetch(`/api/articles/${this.id}`)
+        .then(response => response.json())
+        .then(data => {
+          this.title = data.title;
+          this.body = data.body;
         });
     }
   }

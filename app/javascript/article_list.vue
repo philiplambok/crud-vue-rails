@@ -19,12 +19,16 @@
               </a>
             </div>
           </th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
         <tr :key="article.id" v-for="article in articles">
           <td>{{ article.title }}</td>
           <td>{{ article.body }}</td>
+          <td>
+            <a :href="editLink(article)">Edit</a>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -85,6 +89,10 @@ export default {
         return 0;
       });
       this.bodyAsc = !this.bodyAsc;
+    },
+
+    editLink(article) {
+      return `/articles/${article.id}/edit`;
     }
   },
   mounted() {
