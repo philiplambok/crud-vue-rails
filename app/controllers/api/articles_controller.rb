@@ -23,6 +23,12 @@ module Api
       render json: { message: 'Article has been updated' }
     end
 
+    def destroy
+      article = find_article(params[:id])
+      article.destroy
+      render json: { articles: Article.all }
+    end
+
     private
 
     def article_params

@@ -1,6 +1,6 @@
 <template>
   <div id="article-list">
-    <table class="table">
+    <table class="table table-bordered">
       <thead>
         <tr>
           <th>
@@ -19,15 +19,16 @@
               </a>
             </div>
           </th>
-          <th>Action</th>
+          <th class="text-center">Action</th>
         </tr>
       </thead>
       <tbody>
-        <tr :key="article.id" v-for="article in articles">
+        <tr :key="article.id" v-for="article in articles" :id="article.id">
           <td>{{ article.title }}</td>
           <td>{{ article.body }}</td>
-          <td>
-            <a :href="editLink(article)">Edit</a>
+          <td class="text-center">
+            <a :href="editLink(article)" class="text-info">Edit</a>
+            <a href="#" class="text-danger pl-2" @click.prevent="deleteArticle(article)">Delete</a>
           </td>
         </tr>
       </tbody>
@@ -93,6 +94,21 @@ export default {
 
     editLink(article) {
       return `/articles/${article.id}/edit`;
+    },
+
+    deleteArticle(article) {
+      let url = `/api/articles/${article.id}`;
+      fetch(url, {
+        method: "DELETE",
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: null
+      })
+        .then(response => response.json())
+        .then(data => {
+          this.articles = data.articles;
+        });
     }
   },
   mounted() {

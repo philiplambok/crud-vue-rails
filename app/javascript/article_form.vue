@@ -15,6 +15,7 @@
           class="form-control"
           name="article[title]"
           v-model="title"
+          placeholder="Title of article"
         >
       </div>
     </div>
@@ -29,6 +30,7 @@
           cols="30"
           rows="10"
           v-model="body"
+          placeholder="Body of article"
         ></textarea>
       </div>
     </div>
