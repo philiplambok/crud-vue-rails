@@ -2,6 +2,10 @@
 
 module Api
   class ArticlesController < ApplicationController
+    def index
+      render json: Article.all
+    end
+
     def create
       article = Article.new(atricle_params)
       article.save

@@ -2,12 +2,14 @@
   "name": "crud-vue-rails",
   "private": true,
   "dependencies": {
+    "@primer/octicons": "^9.1.1",
     "@rails/webpacker": "^4.0.7",
     "vue": "^2.6.10",
     "vue-loader": "^15.7.0",
     "vue-template-compiler": "^2.6.10"
   },
   "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.9.0",
     "webpack-dev-server": "^3.7.2"
   }
 }
